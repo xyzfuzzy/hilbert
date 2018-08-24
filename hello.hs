@@ -37,6 +37,15 @@ ex2 = [
     p∧q ⊃ q∧p
     ]
 
+ex3 :: [PropLang]
+ex3 = [
+    (p ⊃ q∨p) ⊃ (q ⊃ q∨p) ⊃ p∨q ⊃ q∨p,
+    p ⊃ q∨p,
+    (q ⊃ q∨p) ⊃ p∨q ⊃ q∨p,
+    q ⊃ q∨p,
+    p∨q ⊃ q∨p
+    ]
+
 main :: IO ()
 main = do
 --    print $ infers ex1
@@ -44,4 +53,6 @@ main = do
     putStr $ show $getTheorem ex1
     putStrLn " is a theorem"
     putStr $ show $getTheorem ex2
+    putStrLn " is a theorem"
+    putStr $ show $getTheorem ex3
     putStrLn " is a theorem"
