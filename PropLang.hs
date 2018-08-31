@@ -5,9 +5,9 @@ import Data.String
 
 data PropLang
     = Atom String
-    | N PropLang
+    | Not PropLang
     | PropLang :∧ PropLang
-    | PropLang :∨  PropLang
+    | PropLang :∨ PropLang
     | PropLang :⊃ PropLang
     deriving (Eq, Show, Read)
     
@@ -31,7 +31,7 @@ mergeNonEmpty a b = if a == empty || b == empty then empty
 match :: PropLang -> PropLang -> Asmt
 match pat a = case (pat, a) of
     (Atom s, _ )-> singleton s a
-    (N p, N q) -> match p q
+    (Not p, Not q) -> match p q
     (p1 :∧ p2, q1 :∧ q2) -> mergeNonEmpty (match p1 q1) (match p2 q2)
     (p1 :∨ p2, q1 :∨ q2) -> mergeNonEmpty (match p1 q1) (match p2 q2)
     (p1 :⊃ p2, q1 :⊃ q2) -> mergeNonEmpty (match p1 q1) (match p2 q2)

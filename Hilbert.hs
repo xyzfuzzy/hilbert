@@ -2,7 +2,7 @@ module Hilbert where
 
 import Data.Map(empty)
 import Data.Maybe
-import PropLang(PropLang(N, (:⊃)), Asmt, match)
+import PropLang(PropLang(Not, (:⊃)), Asmt, match)
 import PropLangOps
 
 axiomtemplate :: [PropLang]
@@ -15,7 +15,7 @@ axiomtemplate = [
     p ⊃ p ∨ q,
     q ⊃ p ∨ q,
     (p ⊃ r) ⊃ (q ⊃ r) ⊃ p ∨ q ⊃ r,
-    (N p ⊃ N q) ⊃ q ⊃ p
+    (Not p ⊃ Not q) ⊃ q ⊃ p
     ]
 
 ifaxiom :: PropLang -> Maybe PropLang
